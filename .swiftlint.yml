@@ -1,11 +1,12 @@
 line_length: 140
 
 opt_in_rules:
-  - file_header
-  - implicit_return
+ - file_header
+ - implicit_return
 
 file_header:
-  - forbidden_pattern: ".?"
+  severity: warning
+  forbidden_pattern: ".?"
 
 shorthand_operator: warning
 force_cast: warning

@@ -1,10 +1,3 @@
-//
-//  RaceViewerUITests.swift
-//  RaceViewerUITests
-//
-//  Created by Valeri Kuzmin on 02.10.2020.
-//
-
 import XCTest
 
 class RaceViewerUITests: XCTestCase {

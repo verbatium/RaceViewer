@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  RaceViewer
-//
-//  Created by Valeri Kuzmin on 02.10.2020.
-//
-
 import Cocoa
 import SwiftUI
 

@@ -92,15 +92,15 @@
 		B88436262527C2780013BBB0 = {
 			isa = PBXGroup;
 			children = (
+				B88436312527C2780013BBB0 /* RaceViewer */,
+				B884364A2527C2790013BBB0 /* RaceViewerTests */,
+				B88436552527C2790013BBB0 /* RaceViewerUITests */,
+				B88436302527C2780013BBB0 /* Products */,
 				B88436C72528B1CA0013BBB0 /* .swiftlint.yml */,
 				B884368C2528A8DB0013BBB0 /* .swift-format-config */,
 				B8843687252887A90013BBB0 /* .gitignore */,
 				B8843680252886F70013BBB0 /* LICENSE */,
 				B8843681252886F70013BBB0 /* README.md */,
-				B88436312527C2780013BBB0 /* RaceViewer */,
-				B884364A2527C2790013BBB0 /* RaceViewerTests */,
-				B88436552527C2790013BBB0 /* RaceViewerUITests */,
-				B88436302527C2780013BBB0 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
