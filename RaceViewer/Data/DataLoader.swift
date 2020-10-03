@@ -1,18 +1,21 @@
 import Foundation
 
 typealias DataStorage = [String: [String: DataObject]]
-class DataLoader: ObservableObject {
-  @Published var data: DataStorage?
-  init() {
-    if let path = Bundle.main.path(forResource: "demoData", ofType: "json"), let data = FileManager.default.contents(atPath: path) {
-      print("dataLength", data.count)
-      do {
-        let decodedData = try JSONDecoder().decode(DataStorage.self, from: data)
-        self.data = decodedData
-      } catch {
-        print("Couldn't parse file \(error)")
-      }
 
-    }
+class DataLoader: ObservableObject {
+  var data: DataStorage = DataStorage()
+
+  init() {
+    self.data = loadData()
+  }
+
+  func loadData() -> DataStorage {
+    guard
+      let path = Bundle.main.path(forResource: "demoData", ofType: "json"),
+      let data = FileManager.default.contents(atPath: path),
+      let decodedData = try? JSONDecoder().decode(DataStorage.self, from: data)
+    else { return DataStorage() }
+
+    return decodedData
   }
 }
