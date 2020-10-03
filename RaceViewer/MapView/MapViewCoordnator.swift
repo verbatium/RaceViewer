@@ -4,11 +4,18 @@ final class MapViewCoordnator: NSObject, MKMapViewDelegate {
 
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
     if let polyline = overlay as? MKPolyline {
-      let polylineRenderer = MKPolylineRenderer(overlay: polyline)
-      polylineRenderer.strokeColor = .red
-      polylineRenderer.lineWidth = 3
-      return polylineRenderer
+      let renderer = MKPolylineRenderer(overlay: polyline)
+      renderer.strokeColor = .red
+      renderer.lineWidth = 1
+      return renderer
+    } else if let polygon = overlay as? MKPolygon {
+      let renderer = MKPolygonRenderer(overlay: polygon)
+      renderer.fillColor = .white
+      renderer.strokeColor = .black
+      renderer.lineWidth = 1
+      return renderer
+    } else {
+      return MKOverlayRenderer(overlay: overlay)
     }
-    return MKOverlayRenderer(overlay: overlay)
   }
 }

@@ -4,6 +4,9 @@ opt_in_rules:
  - file_header
  - implicit_return
 
+disabled_rules:
+ - trailing_comma
+
 file_header:
   severity: warning
   forbidden_pattern: ".?"
