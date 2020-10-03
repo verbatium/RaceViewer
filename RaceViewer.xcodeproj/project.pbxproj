@@ -19,9 +19,6 @@
 		B884367125286E5B0013BBB0 /* MapViewCoordnator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884367025286E5B0013BBB0 /* MapViewCoordnator.swift */; };
 		B884367625286F140013BBB0 /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884367525286F140013BBB0 /* MapViewViewModel.swift */; };
 		B8843682252886F70013BBB0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B8843680252886F70013BBB0 /* LICENSE */; };
-		B8843683252886F70013BBB0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8843681252886F70013BBB0 /* README.md */; };
-		B8843688252887A90013BBB0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B8843687252887A90013BBB0 /* .gitignore */; };
-		B884368D2528A8DB0013BBB0 /* .swift-format-config in Resources */ = {isa = PBXBuildFile; fileRef = B884368C2528A8DB0013BBB0 /* .swift-format-config */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +61,7 @@
 		B8843681252886F70013BBB0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B8843687252887A90013BBB0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B884368C2528A8DB0013BBB0 /* .swift-format-config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-format-config"; sourceTree = "<group>"; };
+		B88436C72528B1CA0013BBB0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +92,7 @@
 		B88436262527C2780013BBB0 = {
 			isa = PBXGroup;
 			children = (
+				B88436C72528B1CA0013BBB0 /* .swiftlint.yml */,
 				B884368C2528A8DB0013BBB0 /* .swift-format-config */,
 				B8843687252887A90013BBB0 /* .gitignore */,
 				B8843680252886F70013BBB0 /* LICENSE */,
@@ -278,10 +277,7 @@
 			files = (
 				B88436402527C2790013BBB0 /* Main.storyboard in Resources */,
 				B884363D2527C2790013BBB0 /* Preview Assets.xcassets in Resources */,
-				B8843683252886F70013BBB0 /* README.md in Resources */,
 				B8843682252886F70013BBB0 /* LICENSE in Resources */,
-				B8843688252887A90013BBB0 /* .gitignore in Resources */,
-				B884368D2528A8DB0013BBB0 /* .swift-format-config in Resources */,
 				B884363A2527C2790013BBB0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +394,7 @@
 		};
 		B88436C32528B0C90013BBB0 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

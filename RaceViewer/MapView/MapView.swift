@@ -1,6 +1,6 @@
-import SwiftUI
-import MapKit
 import Combine
+import MapKit
+import SwiftUI
 
 struct MapView {
   var viewModel: MapViewViewModel
@@ -13,11 +13,11 @@ extension MapView: NSViewRepresentable {
     viewModel.view = view
     return view
   }
-  
+
   func updateNSView(_ nsView: MKMapView, context: NSViewRepresentableContext<MapView>) {
     viewModel.setRegion(view: nsView)
   }
-  
+
   func makeCoordinator() -> MapViewCoordnator {
     MapViewCoordnator()
   }

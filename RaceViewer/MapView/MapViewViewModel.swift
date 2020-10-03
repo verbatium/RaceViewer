@@ -12,13 +12,14 @@ class MapViewViewModel: ObservableObject {
   init() {
     self.timer = Timer.publish(every: 0.1, on: .main, in: .common)
       .autoconnect()
-      .sink() { _ in
-        let coordinate = CLLocationCoordinate2D(latitude: self.coordinate.latitude + 0.0001, longitude: self.coordinate.longitude)
+      .sink { _ in
+        let coordinate = CLLocationCoordinate2D(
+          latitude: self.coordinate.latitude + 0.0001, longitude: self.coordinate.longitude)
         self.addPointToCurrentTrackSegmentAtLocation(coordinate)
         self.coordinate = coordinate
       }
   }
-  
+
   func addPointToCurrentTrackSegmentAtLocation(_ coordinate: CLLocationCoordinate2D) {
     coords.append(coordinate)
 
@@ -28,7 +29,7 @@ class MapViewViewModel: ObservableObject {
     currentSegmentOverlay = overlay
   }
 
-  func setRegion(view: MKMapView){
+  func setRegion(view: MKMapView) {
     let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     let region = MKCoordinateRegion(center: coordinate, span: span)
 
