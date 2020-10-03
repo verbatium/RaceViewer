@@ -5,6 +5,8 @@ import SwiftUI
 class MapViewViewModel: ObservableObject {
   var currentSegmentOverlay: MKPolyline = MKPolyline()
   var boatOverlay: MKPolygon = MKPolygon()
+  var currentLayers: [MKOverlay] = []
+  var previousLayers: [MKOverlay] = []
   let scaleBoat: AffineTransform = AffineTransform(scaleByX: 3.64, byY: 10.66)
   var boatPoints = [
     NSPoint(x: -0.5, y: -0.5), NSPoint(x: 0.5, y: -0.5),
@@ -19,7 +21,7 @@ class MapViewViewModel: ObservableObject {
   var view: MKMapView?
 
   init() {
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     DataLoader().flatData
       .publisher
@@ -31,18 +33,24 @@ class MapViewViewModel: ObservableObject {
         self.coordinate.send($0.location)
         self.addPointToCurrentTrackSegmentAtLocation($0.location)
         self.displayShip(at: $0.location, with: $0.heading)
+        self.updateOverlaysOnMap()
       }
       .store(in: &subscribers)
 
+  }
+
+  func updateOverlaysOnMap() {
+    view?.addOverlays(currentLayers)
+    view?.removeOverlays(previousLayers)
+    previousLayers = currentLayers
+    currentLayers = []
   }
 
   func addPointToCurrentTrackSegmentAtLocation(_ coordinate: CLLocationCoordinate2D) {
     coords.append(coordinate)
 
     let overlay = MKPolyline(coordinates: &coords, count: coords.count)
-    view?.addOverlay(overlay)
-    view?.removeOverlay(currentSegmentOverlay)
-    currentSegmentOverlay = overlay
+    currentLayers.append(overlay)
   }
 
   func displayShip(at location: CLLocationCoordinate2D, with heading: Decimal) {
@@ -58,9 +66,8 @@ class MapViewViewModel: ObservableObject {
         .map { scalePoints.transform($0) }
         .map { rotation.transform($0).mapPoint }
         .map { $0 + currentLocation }, count: boatPoints.count)
-    view?.addOverlay(newOverlay)
-    view?.removeOverlay(boatOverlay)
-    boatOverlay = newOverlay
+
+    currentLayers.append(newOverlay)
 
   }
 
