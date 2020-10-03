@@ -1,10 +1,3 @@
-//
-//  RaceViewerTests.swift
-//  RaceViewerTests
-//
-//  Created by Valeri Kuzmin on 02.10.2020.
-//
-
 import XCTest
 @testable import RaceViewer
 
