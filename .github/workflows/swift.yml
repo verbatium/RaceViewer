@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         run-config:
-          - { scheme: 'RaceViewer-unitTests', destination: 'platform=macOS' }
+          - { scheme: 'RaceViewer', destination: 'platform=macOS' }
 
     steps:
     - name: Checkout Project
