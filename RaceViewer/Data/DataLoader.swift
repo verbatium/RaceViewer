@@ -1,9 +1,15 @@
 import Foundation
 
-typealias DataStorage = [String: [String: DataObject]]
+typealias SessionKey = String
+typealias RecordKey = String
+typealias DataStorage = [SessionKey: [RecordKey: DataObject]]
 
 class DataLoader: ObservableObject {
   var data: DataStorage = DataStorage()
+
+  var flatData: [DataObject] {
+    data.values.flatMap { records in records.values }
+  }
 
   init() {
     self.data = loadData()
