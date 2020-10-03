@@ -5,13 +5,14 @@ import SwiftUI
 class MapViewViewModel: ObservableObject {
   var currentSegmentOverlay: MKPolyline = MKPolyline()
   var boatOverlay: MKPolygon = MKPolygon()
+  let scaleBoat: AffineTransform = AffineTransform(scaleByX: 3.64, byY: 10.66)
   var boatPoints = [
-    NSPoint(x: -1, y: -1),
-    NSPoint(x: 1, y: -1),
-    NSPoint(x: 1, y: 2),
-    NSPoint(x: 0, y: 3),
-    NSPoint(x: -1, y: 2),
+    NSPoint(x: -0.5, y: -0.5), NSPoint(x: 0.5, y: -0.5),
+    NSPoint(x: 0.5, y: 0),
+    NSPoint(x: 0, y: 0.5),
+    NSPoint(x: -0.5, y: 0),
   ]
+
   var coords: [CLLocationCoordinate2D] = []
   var coordinate = CurrentValueSubject<CLLocationCoordinate2D, Never>(CLLocationCoordinate2D(latitude: 59.45, longitude: 24.75))
   var subscribers = [AnyCancellable]()
@@ -47,13 +48,15 @@ class MapViewViewModel: ObservableObject {
   func displayShip(at location: CLLocationCoordinate2D, with heading: Decimal) {
     let angle = Angle(radians: heading.doubleValue)
     let currentLocation = MKMapPoint(location)
-    let scale = MKMapPointsPerMeterAtLatitude(location.latitude)
+    let scaleFactor = MKMapPointsPerMeterAtLatitude(location.latitude)
     let rotation: AffineTransform = AffineTransform(rotationByDegrees: angle.degrees.cgFloat + 180)
+    let scalePoints = AffineTransform(scale: scaleFactor.cgFloat)
     let newOverlay = MKPolygon(
       points:
         boatPoints
+        .map { scaleBoat.transform($0) }
+        .map { scalePoints.transform($0) }
         .map { rotation.transform($0).mapPoint }
-        .map { $0 * scale }
         .map { $0 + currentLocation }, count: boatPoints.count)
     view?.addOverlay(newOverlay)
     view?.removeOverlay(boatOverlay)
