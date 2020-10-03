@@ -8,7 +8,9 @@ class DataLoader: ObservableObject {
   var data: DataStorage = DataStorage()
 
   var flatData: [DataObject] {
-    data.values.flatMap { records in records.values }
+    data.values
+      .flatMap { records in records.values }
+      .sorted { $0.timestamp < $1.timestamp }
   }
 
   init() {
