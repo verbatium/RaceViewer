@@ -33,3 +33,5 @@ playground.xcworkspace
 
 # Swift Package Manager
 .build/
+
+RaceViewer.xcodeproj/xcshareddata/
