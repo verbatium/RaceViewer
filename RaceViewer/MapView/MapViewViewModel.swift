@@ -4,20 +4,26 @@ import MapKit
 class MapViewViewModel: ObservableObject {
   var currentSegmentOverlay: MKPolyline = MKPolyline()
   var coords: [CLLocationCoordinate2D] = []
-  var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 59.45, longitude: 24.75)
-
-  var timer: AnyCancellable?
+  var coordinate = CurrentValueSubject<CLLocationCoordinate2D, Never>(CLLocationCoordinate2D(latitude: 59.45, longitude: 24.75))
+  var subscribers = [AnyCancellable]()
   var view: MKMapView?
 
   init() {
-    self.timer = Timer.publish(every: 0.1, on: .main, in: .common)
-      .autoconnect()
-      .sink { _ in
-        let coordinate = CLLocationCoordinate2D(
-          latitude: self.coordinate.latitude + 0.0001, longitude: self.coordinate.longitude)
-        self.addPointToCurrentTrackSegmentAtLocation(coordinate)
-        self.coordinate = coordinate
-      }
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+
+    DataLoader().flatData
+      .publisher
+      .zip(timer)
+      .map { data, _ in data.location }
+      .receive(on: RunLoop.main)
+      .assign(to: \.value, on: self.coordinate)
+      .store(in: &subscribers)
+
+    coordinate
+      .dropFirst()
+      .sink { self.addPointToCurrentTrackSegmentAtLocation($0) }
+      .store(in: &subscribers)
+
   }
 
   func addPointToCurrentTrackSegmentAtLocation(_ coordinate: CLLocationCoordinate2D) {
@@ -31,9 +37,9 @@ class MapViewViewModel: ObservableObject {
 
   func setRegion(view: MKMapView) {
     let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    let region = MKCoordinateRegion(center: coordinate, span: span)
+    let region = MKCoordinateRegion(center: coordinate.value, span: span)
 
-    view.setCenter(coordinate, animated: true)
+    view.setCenter(coordinate.value, animated: true)
     view.setRegion(region, animated: true)
   }
 }
