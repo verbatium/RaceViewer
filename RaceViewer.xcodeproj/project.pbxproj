@@ -19,6 +19,14 @@
 		B884367125286E5B0013BBB0 /* MapViewCoordnator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884367025286E5B0013BBB0 /* MapViewCoordnator.swift */; };
 		B884367625286F140013BBB0 /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884367525286F140013BBB0 /* MapViewViewModel.swift */; };
 		B8843682252886F70013BBB0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B8843680252886F70013BBB0 /* LICENSE */; };
+		B88436F02528BC610013BBB0 /* demoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B88436E82528BC320013BBB0 /* demoData.json */; };
+		B88436F62528BDA00013BBB0 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436F52528BDA00013BBB0 /* DataLoader.swift */; };
+		B88436FE2528C38F0013BBB0 /* .swift-format-config.json in Resources */ = {isa = PBXBuildFile; fileRef = B88436FD2528C38F0013BBB0 /* .swift-format-config.json */; };
+		B884370A2528CA4F0013BBB0 /* DataLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88437092528CA4F0013BBB0 /* DataLoaderTest.swift */; };
+		B88437112528CA830013BBB0 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436F52528BDA00013BBB0 /* DataLoader.swift */; };
+		B88437162528CF630013BBB0 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88437152528CF630013BBB0 /* DataObject.swift */; };
+		B884371B2528CFB20013BBB0 /* DataObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884371A2528CFB20013BBB0 /* DataObjectTest.swift */; };
+		B88437292528D0B60013BBB0 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88437152528CF630013BBB0 /* DataObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +68,13 @@
 		B8843680252886F70013BBB0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B8843681252886F70013BBB0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B8843687252887A90013BBB0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		B884368C2528A8DB0013BBB0 /* .swift-format-config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-format-config"; sourceTree = "<group>"; };
 		B88436C72528B1CA0013BBB0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		B88436E82528BC320013BBB0 /* demoData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = demoData.json; sourceTree = "<group>"; };
+		B88436F52528BDA00013BBB0 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		B88436FD2528C38F0013BBB0 /* .swift-format-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ".swift-format-config.json"; sourceTree = "<group>"; };
+		B88437092528CA4F0013BBB0 /* DataLoaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoaderTest.swift; sourceTree = "<group>"; };
+		B88437152528CF630013BBB0 /* DataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
+		B884371A2528CFB20013BBB0 /* DataObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjectTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +110,7 @@
 				B88436552527C2790013BBB0 /* RaceViewerUITests */,
 				B88436302527C2780013BBB0 /* Products */,
 				B88436C72528B1CA0013BBB0 /* .swiftlint.yml */,
-				B884368C2528A8DB0013BBB0 /* .swift-format-config */,
+				B88436FD2528C38F0013BBB0 /* .swift-format-config.json */,
 				B8843687252887A90013BBB0 /* .gitignore */,
 				B8843680252886F70013BBB0 /* LICENSE */,
 				B8843681252886F70013BBB0 /* README.md */,
@@ -117,6 +130,8 @@
 		B88436312527C2780013BBB0 /* RaceViewer */ = {
 			isa = PBXGroup;
 			children = (
+				B88436F42528BD910013BBB0 /* Data */,
+				B88436E72528BC180013BBB0 /* supportFiles */,
 				B884366725286DED0013BBB0 /* MapView */,
 				B88436322527C2780013BBB0 /* AppDelegate.swift */,
 				B88436342527C2780013BBB0 /* ContentView.swift */,
@@ -141,6 +156,7 @@
 		B884364A2527C2790013BBB0 /* RaceViewerTests */ = {
 			isa = PBXGroup;
 			children = (
+				B88437082528CA2E0013BBB0 /* Data */,
 				B884364B2527C2790013BBB0 /* RaceViewerTests.swift */,
 				B884364D2527C2790013BBB0 /* Info.plist */,
 			);
@@ -164,6 +180,32 @@
 				B884367525286F140013BBB0 /* MapViewViewModel.swift */,
 			);
 			path = MapView;
+			sourceTree = "<group>";
+		};
+		B88436E72528BC180013BBB0 /* supportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B88436E82528BC320013BBB0 /* demoData.json */,
+			);
+			path = supportFiles;
+			sourceTree = "<group>";
+		};
+		B88436F42528BD910013BBB0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B88436F52528BDA00013BBB0 /* DataLoader.swift */,
+				B88437152528CF630013BBB0 /* DataObject.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B88437082528CA2E0013BBB0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B88437092528CA4F0013BBB0 /* DataLoaderTest.swift */,
+				B884371A2528CFB20013BBB0 /* DataObjectTest.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +314,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88436F02528BC610013BBB0 /* demoData.json in Resources */,
+				B88436FE2528C38F0013BBB0 /* .swift-format-config.json in Resources */,
 				B88436402527C2790013BBB0 /* Main.storyboard in Resources */,
 				B884363D2527C2790013BBB0 /* Preview Assets.xcassets in Resources */,
 				B8843682252886F70013BBB0 /* LICENSE in Resources */,
@@ -312,7 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swift-format >/dev/null; then\n    swift-format -m lint -r .\n    exit 0\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
+			shellScript = "if which swift-format >/dev/null; then\n    swift-format -m lint -r  ${PROJECT_DIR} --configuration ${PROJECT_DIR}/.swift-format-config.json\n    exit 0\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
 		};
 		B88436BF2528AF890013BBB0 /* Swift format */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -330,7 +374,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swift-format >/dev/null; then\n    swift-format -m format -i -r ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
+			shellScript = "if which swift-format >/dev/null; then\n    swift-format -m format -i -r ${PROJECT_DIR} --configuration ${PROJECT_DIR}/.swift-format-config.json\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
 		};
 		B88436C32528B0C90013BBB0 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -360,7 +404,9 @@
 			files = (
 				B884367625286F140013BBB0 /* MapViewViewModel.swift in Sources */,
 				B88436382527C2780013BBB0 /* RaceViewer.xcdatamodeld in Sources */,
+				B88436F62528BDA00013BBB0 /* DataLoader.swift in Sources */,
 				B884366925286DFF0013BBB0 /* MapView.swift in Sources */,
+				B88437162528CF630013BBB0 /* DataObject.swift in Sources */,
 				B88436352527C2780013BBB0 /* ContentView.swift in Sources */,
 				B88436332527C2780013BBB0 /* AppDelegate.swift in Sources */,
 				B884367125286E5B0013BBB0 /* MapViewCoordnator.swift in Sources */,
@@ -371,7 +417,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B884371B2528CFB20013BBB0 /* DataObjectTest.swift in Sources */,
+				B884370A2528CA4F0013BBB0 /* DataLoaderTest.swift in Sources */,
 				B884364C2527C2790013BBB0 /* RaceViewerTests.swift in Sources */,
+				B88437112528CA830013BBB0 /* DataLoader.swift in Sources */,
+				B88437292528D0B60013BBB0 /* DataObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
