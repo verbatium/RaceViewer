@@ -211,10 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B88436612527C2790013BBB0 /* Build configuration list for PBXNativeTarget "RaceViewerUITests" */;
 			buildPhases = (
-				B88436B42528AE630013BBB0 /* Run Script */,
 				B884364E2527C2790013BBB0 /* Sources */,
-				B88436912528AB000013BBB0 /* swift format */,
-				B88436A42528ACF50013BBB0 /* swift lint */,
 				B884364F2527C2790013BBB0 /* Frameworks */,
 				B88436502527C2790013BBB0 /* Resources */,
 			);
@@ -299,63 +296,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B88436912528AB000013BBB0 /* swift format */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "swift format";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swift-format >/dev/null; then\n    swift-format -m format -i -r ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
-		};
-		B88436A42528ACF50013BBB0 /* swift lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "swift lint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#if which swift-format >/dev/null; then\n    swift-format -m lint -r .\n    exit 0\n#else\n#    echo \"warning: swift-format not installed\"\n#fi\n";
-		};
-		B88436B42528AE630013BBB0 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 		B88436BB2528AECE0013BBB0 /* Swift Format lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
