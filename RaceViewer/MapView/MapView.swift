@@ -22,7 +22,7 @@ struct MapView {
     renderer.strokeColor = .yellow
     self.trackRenderer = renderer
     let boatRenderer = TrackOverlayRenderer(overlay: viewModel.boatOverlay)
-    boatRenderer.fillColor = .white
+    boatRenderer.fillColor = .blue
     self.boatRenderer = boatRenderer
   }
 }
@@ -31,7 +31,7 @@ extension MapView: NSViewRepresentable {
   func makeNSView(context: Context) -> MKMapView {
     let view = MKMapView(frame: .zero)
     view.delegate = context.coordinator
-    //view.addOverlay(tileOverlay)
+    view.addOverlay(tileOverlay)
     view.addOverlay(trackOverlay)
     view.addOverlay(boatOverlay)
     viewModel.view = view

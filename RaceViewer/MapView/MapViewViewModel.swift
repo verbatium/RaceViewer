@@ -49,12 +49,13 @@ class MapViewViewModel: ObservableObject {
     let rotation: AffineTransform = AffineTransform(rotationByDegrees: angle.degrees.cgFloat + 180)
     let scalePoints = AffineTransform(scale: scaleFactor.cgFloat)
 
-    boatOverlay.trackPoints =
-      boatPoints
-      .map { scaleBoat.transform($0) }
-      .map { scalePoints.transform($0) }
-      .map { rotation.transform($0).mapPoint }
-      .map { $0 + currentLocation }
+    boatOverlay.replacePoints(
+      points:
+        boatPoints
+        .map { scaleBoat.transform($0) }
+        .map { scalePoints.transform($0) }
+        .map { rotation.transform($0).mapPoint }
+        .map { $0 + currentLocation })
 
   }
 

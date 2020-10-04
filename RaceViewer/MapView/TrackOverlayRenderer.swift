@@ -11,8 +11,10 @@ class TrackOverlayRenderer: MKOverlayPathRenderer {
   init(overlay lineOverlay: TrackOverlay) {
     self.lineOverlay = lineOverlay
     super.init(overlay: lineOverlay)
-    lineOverlay.$trackPoints
-      .sink { _ in self.invalidatePath() }
+    lineOverlay.$refreshBBox
+      .sink { box in
+        self.setNeedsDisplay(box)
+      }
       .store(in: &subscribers)
   }
 
@@ -20,5 +22,10 @@ class TrackOverlayRenderer: MKOverlayPathRenderer {
     let points = lineOverlay.trackPoints.map { point(for: $0) }
     path = lineOverlay.path(points: points)
     lineOverlay.boundsMapRect = mapRect(for: path.boundingBox)
+  }
+
+  override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
+    self.createPath()
+    super.draw(mapRect, zoomScale: zoomScale, in: context)
   }
 }
