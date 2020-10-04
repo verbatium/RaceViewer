@@ -3,19 +3,19 @@ import MapKit
 import SwiftUI
 
 class MapViewViewModel: ObservableObject {
-  var currentSegmentOverlay: MKPolyline = MKPolyline()
-  var boatOverlay: MKPolygon = MKPolygon()
-  var currentLayers: [MKOverlay] = []
-  var previousLayers: [MKOverlay] = []
   let scaleBoat: AffineTransform = AffineTransform(scaleByX: 3.64, byY: 10.66)
   var boatPoints = [
-    NSPoint(x: -0.5, y: -0.5), NSPoint(x: 0.5, y: -0.5),
+    NSPoint(x: -0.5, y: -0.5),
+    NSPoint(x: 0.5, y: -0.5),
     NSPoint(x: 0.5, y: 0),
     NSPoint(x: 0, y: 0.5),
     NSPoint(x: -0.5, y: 0),
+    NSPoint(x: -0.5, y: -0.5),
   ]
 
-  var coords: [CLLocationCoordinate2D] = []
+  var trackOverlay: TrackOverlay = TrackOverlay(trackPoints: [])
+  var boatOverlay: TrackOverlay = TrackOverlay(trackPoints: [])
+
   var coordinate = CurrentValueSubject<CLLocationCoordinate2D, Never>(CLLocationCoordinate2D(latitude: 59.45, longitude: 24.75))
   var subscribers = [AnyCancellable]()
   var view: MKMapView?
@@ -33,24 +33,13 @@ class MapViewViewModel: ObservableObject {
         self.coordinate.send($0.location)
         self.addPointToCurrentTrackSegmentAtLocation($0.location)
         self.displayShip(at: $0.location, with: $0.heading)
-        self.updateOverlaysOnMap()
       }
       .store(in: &subscribers)
 
   }
 
-  func updateOverlaysOnMap() {
-    view?.addOverlays(currentLayers)
-    view?.removeOverlays(previousLayers)
-    previousLayers = currentLayers
-    currentLayers = []
-  }
-
   func addPointToCurrentTrackSegmentAtLocation(_ coordinate: CLLocationCoordinate2D) {
-    coords.append(coordinate)
-
-    let overlay = MKPolyline(coordinates: &coords, count: coords.count)
-    currentLayers.append(overlay)
+    trackOverlay.addPoint(point: MKMapPoint(coordinate))
   }
 
   func displayShip(at location: CLLocationCoordinate2D, with heading: Decimal) {
@@ -59,15 +48,13 @@ class MapViewViewModel: ObservableObject {
     let scaleFactor = MKMapPointsPerMeterAtLatitude(location.latitude)
     let rotation: AffineTransform = AffineTransform(rotationByDegrees: angle.degrees.cgFloat + 180)
     let scalePoints = AffineTransform(scale: scaleFactor.cgFloat)
-    let newOverlay = MKPolygon(
-      points:
-        boatPoints
-        .map { scaleBoat.transform($0) }
-        .map { scalePoints.transform($0) }
-        .map { rotation.transform($0).mapPoint }
-        .map { $0 + currentLocation }, count: boatPoints.count)
 
-    currentLayers.append(newOverlay)
+    boatOverlay.trackPoints =
+      boatPoints
+      .map { scaleBoat.transform($0) }
+      .map { scalePoints.transform($0) }
+      .map { rotation.transform($0).mapPoint }
+      .map { $0 + currentLocation }
 
   }
 

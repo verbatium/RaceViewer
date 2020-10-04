@@ -2,23 +2,20 @@ import MapKit
 
 final class MapViewCoordnator: NSObject, MKMapViewDelegate {
   var tileRenderer: MKOverlayRenderer
+  var trackRenderer: MKOverlayRenderer
+  var boatRenderer: MKOverlayRenderer
 
-  init(tileRenderer: MKOverlayRenderer) {
+  init(tileRenderer: MKOverlayRenderer, trackRenderer: MKOverlayRenderer, boatRenderer: MKOverlayRenderer) {
     self.tileRenderer = tileRenderer
+    self.trackRenderer = trackRenderer
+    self.boatRenderer = boatRenderer
   }
 
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    if let polyline = overlay as? MKPolyline {
-      let renderer = MKPolylineRenderer(overlay: polyline)
-      renderer.strokeColor = .red
-      renderer.lineWidth = 1
-      return renderer
-    } else if let polygon = overlay as? MKPolygon {
-      let renderer = MKPolygonRenderer(overlay: polygon)
-      renderer.fillColor = .white
-      renderer.strokeColor = .black
-      renderer.lineWidth = 1
-      return renderer
+    if overlay.isEqual(boatRenderer.overlay) {
+      return boatRenderer
+    } else if overlay.isEqual(trackRenderer.overlay) {
+      return trackRenderer
     } else if overlay is MKTileOverlay {
       return tileRenderer
     } else {

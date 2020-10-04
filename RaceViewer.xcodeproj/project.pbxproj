@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B849160A25299B1200B3AC3A /* WMSTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849160925299B1200B3AC3A /* WMSTileOverlay.swift */; };
+		B84916132529FCC800B3AC3A /* TrackOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84916122529FCC800B3AC3A /* TrackOverlay.swift */; };
+		B8491618252A1ADC00B3AC3A /* TrackOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8491617252A1ADC00B3AC3A /* TrackOverlayRenderer.swift */; };
 		B88436332527C2780013BBB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436322527C2780013BBB0 /* AppDelegate.swift */; };
 		B88436352527C2780013BBB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436342527C2780013BBB0 /* ContentView.swift */; };
 		B88436382527C2780013BBB0 /* RaceViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B88436362527C2780013BBB0 /* RaceViewer.xcdatamodeld */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		B849160925299B1200B3AC3A /* WMSTileOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMSTileOverlay.swift; sourceTree = "<group>"; };
+		B84916122529FCC800B3AC3A /* TrackOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverlay.swift; sourceTree = "<group>"; };
+		B8491617252A1ADC00B3AC3A /* TrackOverlayRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverlayRenderer.swift; sourceTree = "<group>"; };
 		B884362F2527C2780013BBB0 /* RaceViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RaceViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88436322527C2780013BBB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B88436342527C2780013BBB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				B884367025286E5B0013BBB0 /* MapViewCoordnator.swift */,
 				B884367525286F140013BBB0 /* MapViewViewModel.swift */,
 				B849160925299B1200B3AC3A /* WMSTileOverlay.swift */,
+				B84916122529FCC800B3AC3A /* TrackOverlay.swift */,
+				B8491617252A1ADC00B3AC3A /* TrackOverlayRenderer.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -407,6 +413,8 @@
 			files = (
 				B849160A25299B1200B3AC3A /* WMSTileOverlay.swift in Sources */,
 				B884367625286F140013BBB0 /* MapViewViewModel.swift in Sources */,
+				B8491618252A1ADC00B3AC3A /* TrackOverlayRenderer.swift in Sources */,
+				B84916132529FCC800B3AC3A /* TrackOverlay.swift in Sources */,
 				B88436382527C2780013BBB0 /* RaceViewer.xcdatamodeld in Sources */,
 				B88436F62528BDA00013BBB0 /* DataLoader.swift in Sources */,
 				B884366925286DFF0013BBB0 /* MapView.swift in Sources */,
