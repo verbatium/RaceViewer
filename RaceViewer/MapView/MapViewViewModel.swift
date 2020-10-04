@@ -21,7 +21,7 @@ class MapViewViewModel: ObservableObject {
   var view: MKMapView?
 
   init() {
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     DataLoader().flatData
       .publisher
@@ -77,6 +77,12 @@ class MapViewViewModel: ObservableObject {
 
     view.setCenter(coordinate.value, animated: true)
     view.setRegion(region, animated: true)
+  }
+
+  func wmsOverlay() -> MKTileOverlay {
+    let overlay = WMSTileOverlay(urlArg: "https://gis.vta.ee/primar/wms_ip/peeter.valing?", wmsVersion: "1.1.1")
+    overlay.canReplaceMapContent = true
+    return overlay
   }
 }
 

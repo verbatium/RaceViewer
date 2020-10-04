@@ -11,6 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
     let contentView = ContentView().environment(
       \.managedObjectContext, persistentContainer.viewContext)
+    setupUrlCache()
 
     // Create the window and set the content view.
     window = NSWindow(
@@ -21,6 +22,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.setFrameAutosaveName("Main Window")
     window.contentView = NSHostingView(rootView: contentView)
     window.makeKeyAndOrderFront(nil)
+  }
+
+  func setupUrlCache() {
+    let cacheSizeMegabytes = 30
+    URLCache.shared = URLCache(
+      memoryCapacity: cacheSizeMegabytes * 1024 * 1024,
+      diskCapacity: 0,
+      diskPath: nil
+    )
   }
 
   func applicationWillTerminate(_ aNotification: Notification) {

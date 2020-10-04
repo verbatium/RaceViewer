@@ -10,6 +10,7 @@ extension MapView: NSViewRepresentable {
   func makeNSView(context: Context) -> MKMapView {
     let view = MKMapView(frame: .zero)
     view.delegate = context.coordinator
+    view.addOverlay(viewModel.wmsOverlay())
     viewModel.view = view
     return view
   }
