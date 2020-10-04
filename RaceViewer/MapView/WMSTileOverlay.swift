@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import MapKit
 
@@ -8,6 +9,9 @@ class WMSTileOverlay: MKTileOverlay {
   var useMercator: Bool
   let wmsVersion: String
   var alpha: CGFloat = 1.0
+
+  var subscribers = [AnyCancellable]()
+  var backgroundQueue: DispatchQueue = DispatchQueue(label: "mapBackgroundQueue")
 
   init(urlArg: String, useMercator: Bool = false, wmsVersion: String) {
     self.url = urlArg
@@ -84,4 +88,35 @@ class WMSTileOverlay: MKTileOverlay {
     let zoomLevel = max(0, zoomLevelAt10 + floor(log2f(Float(zoomScale)) + 0.5))
     return Int(zoomLevel)
   }
+
+  override func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
+    let imageUrl = url(forTilePath: path)
+    let request = URLRequest(url: imageUrl)
+    URLSession.shared
+      .dataTaskPublisher(for: request)
+      .subscribe(on: backgroundQueue)
+      .receive(on: RunLoop.main)
+      .sink { complition in
+        switch complition {
+        case .finished:
+          return
+        case .failure(let error):
+          result(nil, error)
+        }
+
+      } receiveValue: { data, response in
+        guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode == 200
+        else {
+          result(nil, TileLoadErrror(message: "Failed to load tile: \(imageUrl.absoluteString)"))
+          return
+        }
+        result(data, nil)
+      }.store(in: &subscribers)
+
+  }
+}
+
+struct TileLoadErrror: Error {
+  var message: String
 }

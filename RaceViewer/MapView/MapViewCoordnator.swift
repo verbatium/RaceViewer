@@ -1,6 +1,11 @@
 import MapKit
 
 final class MapViewCoordnator: NSObject, MKMapViewDelegate {
+  var tileRenderer: MKOverlayRenderer
+
+  init(tileRenderer: MKOverlayRenderer) {
+    self.tileRenderer = tileRenderer
+  }
 
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
     if let polyline = overlay as? MKPolyline {
@@ -14,8 +19,8 @@ final class MapViewCoordnator: NSObject, MKMapViewDelegate {
       renderer.strokeColor = .black
       renderer.lineWidth = 1
       return renderer
-    } else if let overlay = overlay as? MKTileOverlay {
-      return MKTileOverlayRenderer(tileOverlay: overlay)
+    } else if overlay is MKTileOverlay {
+      return tileRenderer
     } else {
       return MKOverlayRenderer(overlay: overlay)
     }

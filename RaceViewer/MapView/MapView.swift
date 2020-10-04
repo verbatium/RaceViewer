@@ -4,13 +4,21 @@ import SwiftUI
 
 struct MapView {
   var viewModel: MapViewViewModel
+  var tileOverlay: MKTileOverlay
+  var renderer: MKTileOverlayRenderer
+
+  init(viewModel: MapViewViewModel) {
+    self.viewModel = viewModel
+    self.tileOverlay = viewModel.wmsOverlay()
+    self.renderer = MKTileOverlayRenderer(tileOverlay: tileOverlay)
+  }
 }
 
 extension MapView: NSViewRepresentable {
   func makeNSView(context: Context) -> MKMapView {
     let view = MKMapView(frame: .zero)
     view.delegate = context.coordinator
-    view.addOverlay(viewModel.wmsOverlay())
+    view.addOverlay(tileOverlay)
     viewModel.view = view
     return view
   }
@@ -20,7 +28,7 @@ extension MapView: NSViewRepresentable {
   }
 
   func makeCoordinator() -> MapViewCoordnator {
-    MapViewCoordnator()
+    MapViewCoordnator(tileRenderer: renderer)
   }
 }
 
