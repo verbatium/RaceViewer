@@ -7,10 +7,18 @@ struct LoginView: View {
   var body: some View {
     VStack {
       Spacer()
-      TextField("email", text: $email)
-      TextField("password", text: $password)
-      Button("Login") {
-        self.applicationState.signIn(email: email, password: password)
+      TextField("E-mail", text: $email)
+      TextField("Password", text: $password)
+      if let error = self.applicationState.errorMessage {
+        Text(error).foregroundColor(.red)
+      }
+      HStack {
+        Button("Login") {
+          self.applicationState.signIn(email: email, password: password)
+        }
+        Button("Reset password") {
+          self.applicationState.sendPasswordReset(email: email)
+        }
       }
       Spacer()
     }.frame(maxWidth: .infinity, maxHeight: .infinity)
