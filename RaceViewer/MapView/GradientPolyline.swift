@@ -10,7 +10,7 @@ class GradientPolyline: TrackOverlay {
 
   func getHue(from index: Int) -> CGColor {
     guard hues.count > index else { return CGColor(red: 1, green: 1, blue: 1, alpha: 1) }
-    return CGColor(srgbRed: (hues[index]), green: 1, blue: 1, alpha: 1)
+    return NSColor(deviceHue: hues[index], saturation: 1, brightness: 1, alpha: 1).cgColor
   }
 
   func addPoint(point: MKMapPoint, speed: Double) {

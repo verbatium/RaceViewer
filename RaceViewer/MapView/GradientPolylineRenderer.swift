@@ -52,17 +52,23 @@ class GradientPolylineRenderer: MKPolylineRenderer {
         path.move(to: prevPoint)
         path.addLine(to: point)
 
-        let colors = [prevColor!, currentColor!] as CFArray
+        guard
+          let prevColor = prevColor,
+          let currentColor = currentColor,
+          let gradient = CGGradient(colorsSpace: nil, colors: [prevColor, currentColor] as CFArray, locations: [0, 1])
+        else { return }
+
         let baseWidth = self.lineWidth / zoomScale * contentScaleFactor
         context.saveGState()
         context.addPath(path)
-        let gradient = CGGradient(colorsSpace: nil, colors: colors, locations: [0, 1])
+
         context.setLineWidth(baseWidth)
         context.replacePathWithStrokedPath()
         context.clip()
         context.setLineWidth(baseWidth)
-        context.drawLinearGradient(gradient!, start: prevPoint, end: point, options: [])
+        context.drawLinearGradient(gradient, start: prevPoint, end: point, options: [])
         context.restoreGState()
+
       }
       prevColor = currentColor
     }

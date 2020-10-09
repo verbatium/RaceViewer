@@ -12,6 +12,11 @@
 		B8491618252A1ADC00B3AC3A /* TrackOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8491617252A1ADC00B3AC3A /* TrackOverlayRenderer.swift */; };
 		B849162F252AF24300B3AC3A /* GradientPolylineRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849162E252AF24300B3AC3A /* GradientPolylineRenderer.swift */; };
 		B8491634252AF26900B3AC3A /* GradientPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8491633252AF26900B3AC3A /* GradientPolyline.swift */; };
+		B8491650252F861800B3AC3A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B849164F252F861800B3AC3A /* FirebaseAuth */; };
+		B8491652252F861800B3AC3A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B8491651252F861800B3AC3A /* FirebaseDatabase */; };
+		B8491660252F9B0C00B3AC3A /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849165F252F9B0C00B3AC3A /* ApplicationState.swift */; };
+		B84916682530C85700B3AC3A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84916672530C85700B3AC3A /* LoginView.swift */; };
+		B84916722530EEB300B3AC3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B84916712530EEB300B3AC3A /* GoogleService-Info.plist */; };
 		B88436332527C2780013BBB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436322527C2780013BBB0 /* AppDelegate.swift */; };
 		B88436352527C2780013BBB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436342527C2780013BBB0 /* ContentView.swift */; };
 		B88436382527C2780013BBB0 /* RaceViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B88436362527C2780013BBB0 /* RaceViewer.xcdatamodeld */; };
@@ -57,6 +62,9 @@
 		B8491617252A1ADC00B3AC3A /* TrackOverlayRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOverlayRenderer.swift; sourceTree = "<group>"; };
 		B849162E252AF24300B3AC3A /* GradientPolylineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPolylineRenderer.swift; sourceTree = "<group>"; };
 		B8491633252AF26900B3AC3A /* GradientPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPolyline.swift; sourceTree = "<group>"; };
+		B849165F252F9B0C00B3AC3A /* ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
+		B84916672530C85700B3AC3A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B84916712530EEB300B3AC3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B884362F2527C2780013BBB0 /* RaceViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RaceViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88436322527C2780013BBB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B88436342527C2780013BBB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8491652252F861800B3AC3A /* FirebaseDatabase in Frameworks */,
+				B8491650252F861800B3AC3A /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,9 +122,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B849165E252F8C5A00B3AC3A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B849165F252F9B0C00B3AC3A /* ApplicationState.swift */,
+				B84916672530C85700B3AC3A /* LoginView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		B88436262527C2780013BBB0 = {
 			isa = PBXGroup;
 			children = (
+				B84916712530EEB300B3AC3A /* GoogleService-Info.plist */,
 				B88436312527C2780013BBB0 /* RaceViewer */,
 				B884364A2527C2790013BBB0 /* RaceViewerTests */,
 				B88436552527C2790013BBB0 /* RaceViewerUITests */,
@@ -140,6 +160,7 @@
 		B88436312527C2780013BBB0 /* RaceViewer */ = {
 			isa = PBXGroup;
 			children = (
+				B849165E252F8C5A00B3AC3A /* Auth */,
 				B88436F42528BD910013BBB0 /* Data */,
 				B88436E72528BC180013BBB0 /* supportFiles */,
 				B884366725286DED0013BBB0 /* MapView */,
@@ -242,6 +263,10 @@
 			dependencies = (
 			);
 			name = RaceViewer;
+			packageProductDependencies = (
+				B849164F252F861800B3AC3A /* FirebaseAuth */,
+				B8491651252F861800B3AC3A /* FirebaseDatabase */,
+			);
 			productName = RaceViewer;
 			productReference = B884362F2527C2780013BBB0 /* RaceViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +338,9 @@
 				Base,
 			);
 			mainGroup = B88436262527C2780013BBB0;
+			packageReferences = (
+				B849164E252F861800B3AC3A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = B88436302527C2780013BBB0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -329,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84916722530EEB300B3AC3A /* GoogleService-Info.plist in Resources */,
 				B88436F02528BC610013BBB0 /* demoData.json in Resources */,
 				B88436FE2528C38F0013BBB0 /* .swift-format-config.json in Resources */,
 				B88436402527C2790013BBB0 /* Main.storyboard in Resources */,
@@ -420,11 +449,13 @@
 				B849160A25299B1200B3AC3A /* WMSTileOverlay.swift in Sources */,
 				B884367625286F140013BBB0 /* MapViewViewModel.swift in Sources */,
 				B8491618252A1ADC00B3AC3A /* TrackOverlayRenderer.swift in Sources */,
+				B84916682530C85700B3AC3A /* LoginView.swift in Sources */,
 				B84916132529FCC800B3AC3A /* TrackOverlay.swift in Sources */,
 				B88436382527C2780013BBB0 /* RaceViewer.xcdatamodeld in Sources */,
 				B88436F62528BDA00013BBB0 /* DataLoader.swift in Sources */,
 				B8491634252AF26900B3AC3A /* GradientPolyline.swift in Sources */,
 				B849162F252AF24300B3AC3A /* GradientPolylineRenderer.swift in Sources */,
+				B8491660252F9B0C00B3AC3A /* ApplicationState.swift in Sources */,
 				B884366925286DFF0013BBB0 /* MapView.swift in Sources */,
 				B88437162528CF630013BBB0 /* DataObject.swift in Sources */,
 				B88436352527C2780013BBB0 /* ContentView.swift in Sources */,
@@ -613,6 +644,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ee.valja7.RaceViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -637,6 +669,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ee.valja7.RaceViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -767,6 +800,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B849164E252F861800B3AC3A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B849164F252F861800B3AC3A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B849164E252F861800B3AC3A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B8491651252F861800B3AC3A /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B849164E252F861800B3AC3A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B88436362527C2780013BBB0 /* RaceViewer.xcdatamodeld */ = {
