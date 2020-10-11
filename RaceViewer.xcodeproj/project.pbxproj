@@ -17,6 +17,7 @@
 		B8491660252F9B0C00B3AC3A /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849165F252F9B0C00B3AC3A /* ApplicationState.swift */; };
 		B84916682530C85700B3AC3A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84916672530C85700B3AC3A /* LoginView.swift */; };
 		B84916722530EEB300B3AC3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B84916712530EEB300B3AC3A /* GoogleService-Info.plist */; };
+		B86A0C86253380D4007BF876 /* Color+SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A0C85253380D4007BF876 /* Color+SystemColors.swift */; };
 		B88436332527C2780013BBB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436322527C2780013BBB0 /* AppDelegate.swift */; };
 		B88436352527C2780013BBB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88436342527C2780013BBB0 /* ContentView.swift */; };
 		B88436382527C2780013BBB0 /* RaceViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B88436362527C2780013BBB0 /* RaceViewer.xcdatamodeld */; };
@@ -65,6 +66,7 @@
 		B849165F252F9B0C00B3AC3A /* ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
 		B84916672530C85700B3AC3A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B84916712530EEB300B3AC3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B86A0C85253380D4007BF876 /* Color+SystemColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+SystemColors.swift"; sourceTree = "<group>"; };
 		B884362F2527C2780013BBB0 /* RaceViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RaceViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88436322527C2780013BBB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B88436342527C2780013BBB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		B86A0C84253380B7007BF876 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B86A0C85253380D4007BF876 /* Color+SystemColors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B88436262527C2780013BBB0 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +170,7 @@
 		B88436312527C2780013BBB0 /* RaceViewer */ = {
 			isa = PBXGroup;
 			children = (
+				B86A0C84253380B7007BF876 /* Extensions */,
 				B849165E252F8C5A00B3AC3A /* Auth */,
 				B88436F42528BD910013BBB0 /* Data */,
 				B88436E72528BC180013BBB0 /* supportFiles */,
@@ -251,8 +262,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B884365B2527C2790013BBB0 /* Build configuration list for PBXNativeTarget "RaceViewer" */;
 			buildPhases = (
-				B88436BF2528AF890013BBB0 /* Swift format */,
-				B88436BB2528AECE0013BBB0 /* Swift Format lint */,
 				B88436C32528B0C90013BBB0 /* Swift Lint */,
 				B884362B2527C2780013BBB0 /* Sources */,
 				B884362C2527C2780013BBB0 /* Frameworks */,
@@ -384,42 +393,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B88436BB2528AECE0013BBB0 /* Swift Format lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Format lint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swift-format >/dev/null; then\n    swift-format -m lint -r  ${PROJECT_DIR} --configuration ${PROJECT_DIR}/.swift-format-config.json\n    exit 0\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
-		};
-		B88436BF2528AF890013BBB0 /* Swift format */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Swift format";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swift-format >/dev/null; then\n    swift-format -m format -i -r ${PROJECT_DIR} --configuration ${PROJECT_DIR}/.swift-format-config.json\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
-		};
 		B88436C32528B0C90013BBB0 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -450,6 +423,7 @@
 				B884367625286F140013BBB0 /* MapViewViewModel.swift in Sources */,
 				B8491618252A1ADC00B3AC3A /* TrackOverlayRenderer.swift in Sources */,
 				B84916682530C85700B3AC3A /* LoginView.swift in Sources */,
+				B86A0C86253380D4007BF876 /* Color+SystemColors.swift in Sources */,
 				B84916132529FCC800B3AC3A /* TrackOverlay.swift in Sources */,
 				B88436382527C2780013BBB0 /* RaceViewer.xcdatamodeld in Sources */,
 				B88436F62528BDA00013BBB0 /* DataLoader.swift in Sources */,

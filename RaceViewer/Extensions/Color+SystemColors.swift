@@ -1,0 +1,62 @@
+import SwiftUI
+
+extension Color {
+  static var controlColor: Color { Color(NSColor.controlColor) }
+  static var black: Color { Color(NSColor.black) }
+  static var darkGray: Color { Color(NSColor.darkGray) }
+  static var lightGray: Color { Color(NSColor.lightGray) }
+  static var white: Color { Color(NSColor.white) }
+  static var gray: Color { Color(NSColor.gray) }
+  static var red: Color { Color(NSColor.red) }
+  static var green: Color { Color(NSColor.green) }
+  static var blue: Color { Color(NSColor.blue) }
+  static var cyan: Color { Color(NSColor.cyan) }
+  static var yellow: Color { Color(NSColor.yellow) }
+  static var magenta: Color { Color(NSColor.magenta) }
+  static var orange: Color { Color(NSColor.orange) }
+  static var purple: Color { Color(NSColor.purple) }
+  static var brown: Color { Color(NSColor.brown) }
+  static var clear: Color { Color(NSColor.clear) }
+  static var labelColor: Color { Color(NSColor.labelColor) }
+  static var secondaryLabelColor: Color { Color(NSColor.secondaryLabelColor) }
+  static var tertiaryLabelColor: Color { Color(NSColor.tertiaryLabelColor) }
+  static var quaternaryLabelColor: Color { Color(NSColor.quaternaryLabelColor) }
+  static var linkColor: Color { Color(NSColor.linkColor) }
+  static var placeholderTextColor: Color { Color(NSColor.placeholderTextColor) }
+  static var windowFrameTextColor: Color { Color(NSColor.windowFrameTextColor) }
+  static var selectedMenuItemTextColor: Color { Color(NSColor.selectedMenuItemTextColor) }
+  static var alternateSelectedControlTextColor: Color { Color(NSColor.alternateSelectedControlTextColor) }
+  static var headerTextColor: Color { Color(NSColor.headerTextColor) }
+  static var separatorColor: Color { Color(NSColor.separatorColor) }
+  static var gridColor: Color { Color(NSColor.gridColor) }
+  static var windowBackgroundColor: Color { Color(NSColor.windowBackgroundColor) }
+  static var underPageBackgroundColor: Color { Color(NSColor.underPageBackgroundColor) }
+  static var controlBackgroundColor: Color { Color(NSColor.controlBackgroundColor) }
+  static var selectedContentBackgroundColor: Color { Color(NSColor.selectedContentBackgroundColor) }
+  // swiftlint:disable identifier_name 
+  static var unemphasizedSelectedContentBackgroundColor: Color { Color(NSColor.unemphasizedSelectedContentBackgroundColor) }
+  static var findHighlightColor: Color { Color(NSColor.findHighlightColor) }
+  static var textColor: Color { Color(NSColor.textColor) }
+  static var textBackgroundColor: Color { Color(NSColor.textBackgroundColor) }
+  static var selectedTextColor: Color { Color(NSColor.selectedTextColor) }
+  static var selectedTextBackgroundColor: Color { Color(NSColor.selectedTextBackgroundColor) }
+  static var unemphasizedSelectedTextBackgroundColor: Color { Color(NSColor.unemphasizedSelectedTextBackgroundColor) }
+  static var unemphasizedSelectedTextColor: Color { Color(NSColor.unemphasizedSelectedTextColor) }
+  static var controlTextColor: Color { Color(NSColor.controlTextColor) }
+  static var selectedControlColor: Color { Color(NSColor.selectedControlColor) }
+  static var selectedControlTextColor: Color { Color(NSColor.selectedControlTextColor) }
+  static var disabledControlTextColor: Color { Color(NSColor.disabledControlTextColor) }
+  static var keyboardFocusIndicatorColor: Color { Color(NSColor.keyboardFocusIndicatorColor) }
+  static var scrubberTexturedBackground: Color { Color(NSColor.scrubberTexturedBackground) }
+  static var systemRed: Color { Color(NSColor.systemRed) }
+  static var systemGreen: Color { Color(NSColor.systemGreen) }
+  static var systemBlue: Color { Color(NSColor.systemBlue) }
+  static var systemOrange: Color { Color(NSColor.systemOrange) }
+  static var systemYellow: Color { Color(NSColor.systemYellow) }
+  static var systemBrown: Color { Color(NSColor.systemBrown) }
+  static var systemPink: Color { Color(NSColor.systemPink) }
+  static var systemPurple: Color { Color(NSColor.systemPurple) }
+  static var systemGray: Color { Color(NSColor.systemGray) }
+  static var systemTeal: Color { Color(NSColor.systemTeal) }
+  static var systemIndigo: Color { Color(NSColor.systemIndigo) }
+}

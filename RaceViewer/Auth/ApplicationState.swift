@@ -17,11 +17,13 @@ class ApplicationState: ObservableObject {
       self?.processLogin(authResult: authResult, error: error)
     }
   }
+
   func signUp(email: String, password: String) {
     Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
       self?.processLogin(authResult: authResult, error: error)
     }
   }
+
   func sendPasswordReset(email: String) {
     Auth.auth().sendPasswordReset(withEmail: email) { error in
       if let error = error {

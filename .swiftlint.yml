@@ -14,3 +14,6 @@ file_header:
 shorthand_operator: warning
 force_cast: warning
 force_try: warning
+
+identifier_name:
+ 

@@ -1,14 +1,12 @@
 import SwiftUI
-
 struct LoginView: View {
   @EnvironmentObject var applicationState: ApplicationState
-  @State var email: String = ""
-  @State var password: String = ""
+  @State private var email: String = ""
+  @State private var password: String = ""
   var body: some View {
     VStack {
-      Spacer()
       TextField("E-mail", text: $email)
-      TextField("Password", text: $password)
+      SecureField("Password", text: $password)
       if let error = self.applicationState.errorMessage {
         Text(error).foregroundColor(.red)
       }
@@ -20,13 +18,25 @@ struct LoginView: View {
           self.applicationState.sendPasswordReset(email: email)
         }
       }
-      Spacer()
-    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    .frame(width: 300)
+    .padding()
+    .overlay(
+      RoundedRectangle(cornerRadius: 15)
+        .stroke(Color.black, lineWidth: 1)
+    ).background(
+      RoundedRectangle(cornerRadius: 15)
+        .fill(Color.windowBackgroundColor)
+    )
+    .textFieldStyle(RoundedBorderTextFieldStyle())
   }
 }
 
 struct LoginView_Previews: PreviewProvider {
   static var previews: some View {
-    LoginView().environmentObject(ApplicationState())
+    Group {
+      LoginView().environmentObject(ApplicationState())
+      LoginView().environmentObject(ApplicationState()).colorScheme(.light)
+    }
   }
 }
