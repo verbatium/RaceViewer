@@ -1,11 +1,22 @@
 import FirebaseAuth
 import Foundation
+import Firebase
 
 class ApplicationState: ObservableObject {
   @Published var authenticated = false
   @Published var displayLogin = true
   @Published var user: User?
   @Published var errorMessage: String?
+  @Published var selection: Menu? = .userDetails
+  var ref: DatabaseReference
+
+  var mapViewModel = MapViewViewModel()
+  var userDetailsViewModel: UserDetailsViewModel
+
+  init() {
+    ref = Database.database().reference()
+    self.userDetailsViewModel = UserDetailsViewModel(ref: ref)
+  }
 
   private var handle = Auth.auth().addStateDidChangeListener { (auth, user) in
     print("auth", auth)
@@ -54,4 +65,11 @@ class ApplicationState: ObservableObject {
       print("authResult.user.email", authResult.user.email ?? "")
     }
   }
+}
+
+enum Menu: String, CaseIterable {
+  case userDetails = "User Details"
+  case boats = "Boats"
+  case groups = "Groups"
+  case map = "Map"
 }
