@@ -4,13 +4,15 @@ struct UserInfo {
   let id: String
   let firstName: String?
   let lastName: String?
-  //let boats: [String]
+  let boats: [String]?
 }
 
-struct Boat {
+struct Boat: Identifiable {
   let id: String
-  let crew: [String]
-  let races: [String]
+  let owner: String
+  var name: String
+  var crew: [String]?
+  var races: [String]?
 }
 
 struct Race {

@@ -12,10 +12,12 @@ class ApplicationState: ObservableObject {
 
   var mapViewModel = MapViewViewModel()
   var userDetailsViewModel: UserDetailsViewModel
+  var boatsViewModel: BoatsViewModel
 
   init() {
     ref = Database.database().reference()
     self.userDetailsViewModel = UserDetailsViewModel(ref: ref)
+    self.boatsViewModel = BoatsViewModel(ref: ref)
   }
 
   private var handle = Auth.auth().addStateDidChangeListener { (auth, user) in

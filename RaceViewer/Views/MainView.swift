@@ -24,6 +24,9 @@ struct MainView: View {
     case .map:
       return MapView(viewModel: applicationState.mapViewModel)
         .eraseToAnyView()
+    case .boats:
+      return BoatsView(model: applicationState.boatsViewModel)
+        .eraseToAnyView()
     default:
       return Text(applicationState.selection?.rawValue ?? "")
         .font(.largeTitle)
