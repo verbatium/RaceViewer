@@ -1,8 +1,8 @@
 import SwiftUI
 struct LoginView: View {
   @EnvironmentObject var applicationState: ApplicationState
-  @State private var email: String = ""
-  @State private var password: String = ""
+  @State private var email: String = "orhdposit@gmail.com"
+  @State private var password: String = "3r1ks0N1"
   var body: some View {
     VStack {
       TextField("E-mail", text: $email)

@@ -1,10 +1,12 @@
 import Foundation
 
-struct UserInfo {
-  let id: String
+struct UserInfo: Codable {
+  let details: UserDetails
+  let boats: [String: Bool]?
+}
+struct UserDetails: Codable {
   let firstName: String?
   let lastName: String?
-  let boats: [String]?
 }
 
 struct Boat: Identifiable {

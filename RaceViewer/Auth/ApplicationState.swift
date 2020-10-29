@@ -13,11 +13,13 @@ class ApplicationState: ObservableObject {
   var mapViewModel = MapViewViewModel()
   var userDetailsViewModel: UserDetailsViewModel
   var boatsViewModel: BoatsViewModel
+  var dataService: DataService
 
   init() {
     ref = Database.database().reference()
     self.userDetailsViewModel = UserDetailsViewModel(ref: ref)
     self.boatsViewModel = BoatsViewModel(ref: ref)
+    self.dataService = DataService(ref: ref)
   }
 
   private var handle = Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -65,6 +67,7 @@ class ApplicationState: ObservableObject {
       self.user = authResult.user
       print("authResult.user.uid", authResult.user.uid)
       print("authResult.user.email", authResult.user.email ?? "")
+      self.dataService.subscribeAllUserData()
     }
   }
 }

@@ -19,13 +19,13 @@ class UserDetailsViewModel: ObservableObject {
     guard let userID = Auth.auth().currentUser?.uid else { return }
     let values = ["firstName": firstName,
                 "lastName": lastName]
-    self.ref.child("users/\(userID)/").updateChildValues(values)
+    self.ref.child("users/\(userID)/details").updateChildValues(values)
   }
 
   func loadData() {
     guard let userID = Auth.auth().currentUser?.uid else { return }
     print("getting userdetails \(userID)")
-    ref.child("users").child(userID)
+    ref.child("users/\(userID)/details")
       .observeSingleEvent(of: .value, with: {[weak self] snapshot in
         print("Got snapshot")
       // Get user value

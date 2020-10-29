@@ -17,10 +17,12 @@ class BoatsViewModel: ObservableObject {
       let key = ref.child("Boats").childByAutoId().key,
       let userId = Auth.auth().currentUser?.uid
     else { return }
-    let value = [ "owner": userId,
-                  "name": "New boat"
-    ]
+    let value: [String: Any] = ["owner": userId,
+                  "name": "New boat",
+                  "crew": [userId: true]
+    ] as [String: Any]
     ref.child("boats/\(key)/").setValue(value)
+    ref.child("users/\(userId)/boats/\(key)").setValue(true)
   }
 
   func loadData() {
@@ -84,9 +86,11 @@ struct BoatsView: View {
       Button("Create boat") {
         model.createBoat()
       }
-      List(model.boats) { boat in
+      Form {
+        List(model.boats) { boat in
           NavigationLink(boat.name, destination: BoatDetails(boat: boat))
         }
+      }
     }
     .onAppear(perform: model.onAppear)
   }

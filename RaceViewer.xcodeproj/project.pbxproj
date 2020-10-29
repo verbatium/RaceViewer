@@ -43,6 +43,7 @@
 		B884371B2528CFB20013BBB0 /* DataObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884371A2528CFB20013BBB0 /* DataObjectTest.swift */; };
 		B88437292528D0B60013BBB0 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88437152528CF630013BBB0 /* DataObject.swift */; };
 		B8FA3871254492AF005C18B0 /* BoatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA3870254492AF005C18B0 /* BoatsView.swift */; };
+		B8FA3876254B2789005C18B0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA3875254B2789005C18B0 /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		B88437152528CF630013BBB0 /* DataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
 		B884371A2528CFB20013BBB0 /* DataObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjectTest.swift; sourceTree = "<group>"; };
 		B8FA3870254492AF005C18B0 /* BoatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsView.swift; sourceTree = "<group>"; };
+		B8FA3875254B2789005C18B0 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				B849165F252F9B0C00B3AC3A /* ApplicationState.swift */,
 				B84916672530C85700B3AC3A /* LoginView.swift */,
+				B8FA3875254B2789005C18B0 /* DataService.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				B884367625286F140013BBB0 /* MapViewViewModel.swift in Sources */,
 				B8491618252A1ADC00B3AC3A /* TrackOverlayRenderer.swift in Sources */,
 				B86A0C91253427B6007BF876 /* UserDetailsView.swift in Sources */,
+				B8FA3876254B2789005C18B0 /* DataService.swift in Sources */,
 				B84916682530C85700B3AC3A /* LoginView.swift in Sources */,
 				B8FA3871254492AF005C18B0 /* BoatsView.swift in Sources */,
 				B86A0C86253380D4007BF876 /* Color+SystemColors.swift in Sources */,
