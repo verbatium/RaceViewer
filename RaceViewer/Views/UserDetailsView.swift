@@ -1,40 +1,24 @@
 import SwiftUI
 import Firebase
+import Combine
 
 class UserDetailsViewModel: ObservableObject {
-  var user: UserInfo?
   @Published var firstName: String = ""
   @Published var lastName: String = ""
-  var ref: DatabaseReference
 
-  init(ref: DatabaseReference) {
-    self.ref = ref
-  }
+  var dataService: DataService
+  var subscribers: [AnyCancellable] = []
 
-  func onAppear() {
-    loadData()
+  init(dataService: DataService) {
+    self.dataService = dataService
+    dataService.$userDetails.sink { [weak self] userDetails in
+      self?.firstName = userDetails?.firstName ?? ""
+      self?.lastName = userDetails?.lastName ?? ""
+    }.store(in: &subscribers)
   }
 
   func save() {
-    guard let userID = Auth.auth().currentUser?.uid else { return }
-    let values = ["firstName": firstName,
-                "lastName": lastName]
-    self.ref.child("users/\(userID)/details").updateChildValues(values)
-  }
-
-  func loadData() {
-    guard let userID = Auth.auth().currentUser?.uid else { return }
-    print("getting userdetails \(userID)")
-    ref.child("users/\(userID)/details")
-      .observeSingleEvent(of: .value, with: {[weak self] snapshot in
-        print("Got snapshot")
-      // Get user value
-      let value = snapshot.value as? NSDictionary
-      self?.firstName = value?["firstName"] as? String ?? ""
-      self?.lastName = value?["lastName"] as? String ?? ""
-    }) { (error) in
-      print(error.localizedDescription)
-    }
+    dataService.save(userDetails: UserDetails(firstName: firstName, lastName: lastName))
   }
 }
 
@@ -46,16 +30,14 @@ struct UserDetailsView: View {
       Text("User details")
       TextField("First name", text: $model.firstName)
       TextField("Last name", text: $model.lastName)
-      Button("Save") {
-        model.save()
-      }
-    }.onAppear(perform: model.onAppear)
+      Button("Save", action: model.save)
+    }
   }
 }
 
 struct UserDetailsView_Previews: PreviewProvider {
   static var previews: some View {
 
-    UserDetailsView(model: UserDetailsViewModel(ref: DatabaseReference()))
+    UserDetailsView(model: UserDetailsViewModel(dataService: DataService(ref: DatabaseReference())))
   }
 }

@@ -72,10 +72,19 @@ class DataService: ObservableObject {
     boatHandles = []
   }
 
+  func save(userDetails: UserDetails) {
+    guard let userID = Auth.auth().currentUser?.uid else { return }
+    var values: [String: String] = [:]
+    userDetails.firstName.map {values["firstName"] = $0 }
+    userDetails.lastName.map {values["lastName"] = $0 }
+    self.ref.child("users/\(userID)/details").updateChildValues(values)
+  }
+
   // MARK: Private functions
   private func decode<T: Decodable>( snapshot: DataSnapshot) -> T? {
     guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: [])
     else { return nil}
     return try? JSONDecoder().decode(T.self, from: data)
   }
+
 }
