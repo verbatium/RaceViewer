@@ -10,6 +10,7 @@ class DataService: ObservableObject {
 
   @Published var userDetails: UserDetails?
   @Published var boatIds: [String] = []
+  @Published var boatNames: [String: String] = [:]
 
   init(ref: DatabaseReference) {
     self.ref = ref
@@ -53,8 +54,18 @@ class DataService: ObservableObject {
     guard let userID = Auth.auth().currentUser?.uid else { return }
     let boatsHandle = ref.child("users/\(userID)/boats").observe(.childAdded) { [weak self] snapshot in
       self?.boatIds.append(snapshot.key)
+      self?.getNameForBoat(key: snapshot.key)
     }
     boatHandles.append(boatsHandle)
+  }
+
+  func getNameForBoat(key: String) {
+    ref.child("boats/\(key)/name")
+      .observeSingleEvent(of: .value) { [weak self] snapshot in
+      if let value = snapshot.value as? String {
+        self?.boatNames[key] = value
+      }
+    }
   }
 
   func subscribeUserBoatsRemoval() {
@@ -62,6 +73,7 @@ class DataService: ObservableObject {
     let boatsHandle = ref.child("users/\(userID)/boats").observe(.childRemoved) { [weak self] snapshot in
       if let index = self?.boatIds.firstIndex(of: snapshot.key) {
         self?.boatIds.remove(at: index)
+        self?.boatNames.removeValue(forKey: snapshot.key)
       }
     }
     boatHandles.append(boatsHandle)
@@ -78,6 +90,19 @@ class DataService: ObservableObject {
     userDetails.firstName.map {values["firstName"] = $0 }
     userDetails.lastName.map {values["lastName"] = $0 }
     self.ref.child("users/\(userID)/details").updateChildValues(values)
+  }
+
+  func createBoat() {
+    guard
+      let key = ref.child("boats").childByAutoId().key,
+      let userId = Auth.auth().currentUser?.uid
+    else { return }
+    let value: [String: Any] = ["owner": userId,
+                                "name": "New boat",
+                                "crew": [userId: true]
+    ] as [String: Any]
+    ref.child("boats/\(key)/").setValue(value)
+    ref.child("users/\(userId)/boats/\(key)").setValue(true)
   }
 
   // MARK: Private functions

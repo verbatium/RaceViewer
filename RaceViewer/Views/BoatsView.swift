@@ -3,66 +3,21 @@ import Firebase
 import Combine
 
 class BoatsViewModel: ObservableObject {
-  var ref: DatabaseReference
-  private var handle: DatabaseHandle?
+  var dataService: DataService
+  var subscribers: [AnyCancellable] = []
   @Published var selectedBoat: Boat?
-  @Published var boats: [Boat] = []
+  @Published var boatNames: [String: String] = [:]
 
-  init(ref: DatabaseReference) {
-    self.ref = ref
+  init(dataService: DataService) {
+    self.dataService = dataService
+    dataService
+      .$boatNames
+      .assign(to: \.boatNames, on: self)
+      .store(in: &subscribers)
   }
 
   func createBoat() {
-    guard
-      let key = ref.child("Boats").childByAutoId().key,
-      let userId = Auth.auth().currentUser?.uid
-    else { return }
-    let value: [String: Any] = ["owner": userId,
-                  "name": "New boat",
-                  "crew": [userId: true]
-    ] as [String: Any]
-    ref.child("boats/\(key)/").setValue(value)
-    ref.child("users/\(userId)/boats/\(key)").setValue(true)
-  }
-
-  func loadData() {
-    guard
-      let userId = Auth.auth().currentUser?.uid,
-      handle == nil
-    else { return }
-    handle = ref.child("boats")
-      .queryOrdered(byChild: "owner")
-      .queryEqual(toValue: userId)
-      .observe(.value) { snapshot in
-        if let datas = snapshot.children.allObjects as? [DataSnapshot] {
-          let results: [Boat] = datas.compactMap {
-            guard
-              let value = $0.value as? NSDictionary,
-              let name = value["name"] as? String else {
-              return nil
-            }
-           return Boat(id: $0.key,
-                        owner: userId,
-                        name: name)
-          }
-          print(results)
-            self.boats = results
-        }
-      }
-      withCancel: { error in
-        print(error.localizedDescription)
-      }
-  }
-
-  func onAppear() {
-    loadData()
-  }
-
-  deinit {
-    handle.map {
-      ref.removeObserver(withHandle: $0)
-      self.handle = nil
-    }
+    dataService.createBoat()
   }
 }
 
@@ -83,21 +38,20 @@ struct BoatsView: View {
 
   var body: some View {
     VStack {
-      Button("Create boat") {
-        model.createBoat()
-      }
+      Button("Create boat", action: model.createBoat)
       Form {
-        List(model.boats) { boat in
-          NavigationLink(boat.name, destination: BoatDetails(boat: boat))
+        List {
+          ForEach(model.boatNames.sorted(by: >), id: \.key) { key, value in
+            NavigationLink(value, destination: BoatDetails(boat: Boat(id: key, owner: "", name: value, crew: nil, races: nil)))
+          }
         }
       }
     }
-    .onAppear(perform: model.onAppear)
   }
 }
 
 struct BoatsView_Previews: PreviewProvider {
   static var previews: some View {
-    BoatsView(model: BoatsViewModel(ref: DatabaseReference()))
+    BoatsView(model: BoatsViewModel(dataService: DataService(ref: DatabaseReference())))
   }
 }

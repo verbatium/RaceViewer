@@ -19,7 +19,7 @@ class ApplicationState: ObservableObject {
     ref = Database.database().reference()
     self.dataService = DataService(ref: ref)
     self.userDetailsViewModel = UserDetailsViewModel(dataService: self.dataService)
-    self.boatsViewModel = BoatsViewModel(ref: ref)
+    self.boatsViewModel = BoatsViewModel(dataService: self.dataService)
   }
 
   private var handle = Auth.auth().addStateDidChangeListener { (auth, user) in
