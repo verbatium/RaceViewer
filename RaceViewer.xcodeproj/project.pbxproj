@@ -44,6 +44,7 @@
 		B88437292528D0B60013BBB0 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88437152528CF630013BBB0 /* DataObject.swift */; };
 		B8FA3871254492AF005C18B0 /* BoatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA3870254492AF005C18B0 /* BoatsView.swift */; };
 		B8FA3876254B2789005C18B0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA3875254B2789005C18B0 /* DataService.swift */; };
+		B8FA387B254B5445005C18B0 /* DocumentReference+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FA387A254B5445005C18B0 /* DocumentReference+Combine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		B884371A2528CFB20013BBB0 /* DataObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjectTest.swift; sourceTree = "<group>"; };
 		B8FA3870254492AF005C18B0 /* BoatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsView.swift; sourceTree = "<group>"; };
 		B8FA3875254B2789005C18B0 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		B8FA387A254B5445005C18B0 /* DocumentReference+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentReference+Combine.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				B86A0C85253380D4007BF876 /* Color+SystemColors.swift */,
 				B86A0CA0253A3407007BF876 /* View.swift */,
+				B8FA387A254B5445005C18B0 /* DocumentReference+Combine.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				B86A0CA1253A3407007BF876 /* View.swift in Sources */,
 				B8491660252F9B0C00B3AC3A /* ApplicationState.swift in Sources */,
 				B86A0C8C25338C7C007BF876 /* MainView.swift in Sources */,
+				B8FA387B254B5445005C18B0 /* DocumentReference+Combine.swift in Sources */,
 				B884366925286DFF0013BBB0 /* MapView.swift in Sources */,
 				B88437162528CF630013BBB0 /* DataObject.swift in Sources */,
 				B88436352527C2780013BBB0 /* ContentView.swift in Sources */,
